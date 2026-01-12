@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PyKV | Analytics Dashboard</title>
+
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- HEADER -->
+    <div class="dashboard-header">
+        <h2>📊 Store Analytics</h2>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- STATS CARDS -->
+    <div class="stats-grid">
+
+        <div class="stat" onclick="openStatModal('total_keys')">
+            <p>Total Keys</p>
+            <span id="total_keys">0</span>
+        </div>
+
+        <div class="stat" onclick="openStatModal('capacity')">
+            <p>Capacity</p>
+            <span id="capacity">0</span>
+        </div>
+
+        <div class="stat" onclick="openStatModal('hits')">
+            <p>Cache Hits</p>
+            <span id="hits">0</span>
+        </div>
+
+        <div class="stat" onclick="openStatModal('misses')">
+            <p>Cache Misses</p>
+            <span id="misses">0</span>
+        </div>
+
+        <div class="stat" onclick="openStatModal('set_ops')">
+            <p>SET Ops</p>
+            <span id="set_ops">0</span>
+        </div>
+
+        <div class="stat" onclick="openStatModal('get_ops')">
+            <p>GET Ops</p>
+            <span id="get_ops">0</span>
+        </div>
+
+        <div class="stat" onclick="openStatModal('delete_ops')">
+            <p>DELETE Ops</p>
+            <span id="delete_ops">0</span>
+        </div>
+
+    </div>
+
+    <!-- CHARTS -->
+    <div class="charts-grid">
+
+        <div class="chart-card">
+            <h3>Operations Distribution</h3>
+            <canvas id="opsChart"></canvas>
+        </div>
+
+        <div class="chart-card">
+            <h3>Cache Performance</h3>
+            <canvas id="cacheChart"></canvas>
+        </div>
+
+    </div>
+
+    <!-- BACK -->
+    <button class="back-btn" onclick="window.location.href='/dashboard'">
+        ← Back to Store
+    </button>
+
+</div>
+
+<!-- MODAL -->
+<div id="modalOverlay" class="modal-overlay" onclick="closeModal()"></div>
+<div id="statModal" class="modal">
+    <h3 id="modalTitle"></h3>
+    <p id="modalContent"></p>
+    <button onclick="closeModal()">Close</button>
+</div>
+
+<script src="/static/js/app.js"></script>
+<script>
+    logout();
+    loadStats();
+    loadCharts();
+</script>
+
+</body>
+</html>

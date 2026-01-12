@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PyKV Dashboard</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="card">
+    <h2>Key-Value Store</h2>
+
+    <input id="key" placeholder="Key">
+    <input id="value" placeholder="Value">
+
+    <button onclick="setKey()">SET</button>
+    <button onclick="getKey()">GET</button>
+    <button onclick="deleteKey()">DELETE</button>
+
+    <button onclick="window.location.href='/stats-ui'">📊 View Stats</button>
+
+
+<div id="toast"></div>
+
+    <p id="result"></p>
+
+    <button class="logout-btn" onclick="logout()">Logout</button>
+
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PyKV Login</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+<div class="card">
+    <h2>Login</h2>
+
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <label class="remember">
+  <input type="checkbox" id="remember">
+  Remember Me
+</label>
+<div class="password-wrapper">
+    <input id="password" type="password" placeholder="Password">
+    <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+</div>
+
+
+    <button onclick="login()">Login</button>
+    
+
+    <p>New user? <a href="/register-ui">Register</a></p>
+
+    <p id="msg"></p>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
