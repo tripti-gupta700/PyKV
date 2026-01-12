@@ -78,70 +78,136 @@ Write forwarding to secondary
 Environment‑based role switching
 
 🧠 System Architecture
+
 <p align="center"> <img src="assets/architecture.png" alt="Architecture Diagram" width="700"/> </p>
+
 Client (Browser / CLI)
+
         |
         v
+        
 FastAPI API Layer
+
         |
         v
+        
 In‑Memory Store (LRU + TTL)
+
         |
         v
+        
 Write‑Ahead Log (Persistence)
+
         |
         v
+        
 Secondary Node (Replication)
+
+
 🗂️ Project Structure
+
 PyKV/
+
 ├── main.py               # FastAPI app & routes
+
 ├── store.py              # LRU + TTL + stats
+
 ├── persistence.py        # WAL & recovery
+
 ├── auth.py               # User auth
+
 ├── data/
+
 │   ├── users.json
+
 │   └── pykv.log
+
 ├── templates/
+
 │   ├── login.html
+
 │   ├── register.html
+
 │   ├── dashboard.html
+
 │   └── stats.html
+
 ├── static/
+
 │   ├── css/style.css
+
 │   └── js/app.js
+
 ├── benchmark/
+
 │   └── benchmark.py
+
 ├── assets/
+
 │   ├── pykv-banner.png
+
 │   ├── architecture.png
+
 │   └── stats-ui.png
+
 └── README.md
+
 ⚙️ Tech Stack
+
 Layer	Technology
+
 Backend	Python 3.11, FastAPI
+
 Storage	Custom LRU Cache
+
 Persistence	Write‑Ahead Logging
+
 Frontend	HTML, CSS, JavaScript
+
 Auth	SessionMiddleware
+
 Metrics	Custom counters
+
 Replication	Async HTTP
+
 Benchmarking	Python (requests, threading)
+
 ▶️ Running the Project
+
 1️⃣ Install Dependencies
+
 pip install fastapi uvicorn
+
+
 2️⃣ Start Primary Node
+
 $env:ROLE="primary"
+
 $env:SECONDARY_URL="http://127.0.0.1:8001"
+
 uvicorn main:app --port 8000
+
+
 3️⃣ (Optional) Start Secondary Node
+
 $env:ROLE="secondary"
+
 uvicorn main:app --port 8001
+
+
 4️⃣ Open in Browser
+
 http://127.0.0.1:8000
+
+
 🧪 Benchmarking
+
 <p align="center"> <img src="assets/benchmark.png" width="650"/> </p>
+
 python benchmark/benchmark.py
+
 Outputs:
+
 
 Throughput (ops/sec)
 
@@ -150,8 +216,11 @@ Latency
 Concurrent load behavior
 
 📊 Stats Dashboard
+
 <p align="center"> <img src="assets/stats-ui.png" width="650"/> </p>
+
 Metrics exposed via /stats:
+
 
 Total keys
 
@@ -166,7 +235,9 @@ WAL size
 Uptime
 
 🧩 Why This Project Matters
+
 This project demonstrates:
+
 
 Real‑world cache design
 
